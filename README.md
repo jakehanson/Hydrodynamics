@@ -1,4 +1,4 @@
-![alt text](https://github.com/jakehanson/ISING/blob/dev/Ising_Freeze.gif)
+![alt text](https://github.com/jakehanson/Hydrodynamics/blob/master/iso_sim.gif)
 
 ## Hydrodynamics
 This repository is currently used for storing important hydrodynamic codes
