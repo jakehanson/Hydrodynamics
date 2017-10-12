@@ -17,7 +17,8 @@ int main(int argc, char** argv)
 	double cfl = 0.5;
 	double gamma = 7/5.;
 	double e = 1.0;
-	double cs = sqrt(gamma*(gamma-1)*e); // sound speed
+	double cs = sqrt((gamma-1)*e); // sound speed
+	//double cs = sqrt(gamma*(gamma-1)*e); // old sound speed
 	double dg = 0.1*(x1-x0);
 	double dummy; // used to calculate dt_min
 	std::vector<double> x(nx,0); // number of cells
