@@ -6,11 +6,23 @@
 void hydroiso_cen(std::vector<double> x,std::vector<double> xi,std::vector<double> &rho,std::vector<double> &rhou,double e,double gamma,double dt){
 
 	int nx = x.size(); // number of cells
+	double term_1; // used to avoid divide by zeros
+	double term_2; // used to avoid divide by zeros
 
 	// Initialize ui
 	std::vector<double> ui(nx+1,0); // velocities at cell interfaces
 	for(int i=1;i<nx;i++){
-		ui[i]=0.5*(rhou[i]/rho[i]+rhou[i-1]/rho[i-1]);
+		if(rho[i] == 0){
+			term_1 = 0;
+		}else{
+			term_1 = rhou[i]/rho[i];
+		}
+		if(rho[i-1] == 0){
+			term_2 = 0;
+		}else{
+			term_2 = rhou[i-1]/rho[i-1];
+		}
+		ui[i]=0.5*(term_1+term_2);
 	}
 
 	// Compute flux for rho
@@ -28,13 +40,21 @@ void hydroiso_cen(std::vector<double> x,std::vector<double> xi,std::vector<doubl
 		rho[i] = rho[i] - dt/(xi[i+1]-xi[i])*(fluxrho[i+1]-fluxrho[i]);
 	}
 
-	// Get flux for rhou -- HERE IS A DISCREPENCY
+	// Get flux for rhou -- HERE IS A DISCREPENCY WITH UPDATING RHO[I] -- ALSO, ALWAYS POSITIVE?
 	std::vector<double> fluxrhou(nx+1,0); // rhou flux at cell interfaces
 	for(int i=1;i<nx;i++){
 		if(ui[i] > 0){
-			fluxrhou[i] = pow(rhou[i-1],2)/rho[i-1]; // rho[i] has already been updated??
+			if(rho[i-1] != 0){
+				fluxrhou[i] = pow(rhou[i-1],2)/rho[i-1]; // rho[i] has already been updated??
+			}else{
+				fluxrhou[i] = 0; // rho[i] has already been updated??
+			}
 		}else{
-			fluxrhou[i] = pow(rhou[i],2)/rho[i];
+			if(rho[i] != 0){
+				fluxrhou[i] = pow(rhou[i],2)/rho[i];
+			}else{
+				fluxrhou[i] = 0;
+			}
 		}
 	}
 

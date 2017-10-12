@@ -33,7 +33,7 @@ int main(int argc, char** argv)
 
 	// Init rho with gaussian
 	for(int i=0;i<rho.size();i++){
-		rho[i] = 1.0+0.3*exp(-pow(x[i]-xmid,2)/pow(dg,2));
+		rho[i] = 1+0.3*exp(-pow(x[i]-xmid,2)/pow(dg,2));
 	}
 
 	// Init xi array (location of boundaries)
@@ -60,7 +60,11 @@ int main(int argc, char** argv)
 
 		// Get dt
 		for(int i=0;i<rho.size();i++){
-			dummy = dx[i]/(cs+std::abs(rhou[i]/rho[i]));
+			if(rho[i] != 0){
+				dummy = dx[i]/(cs+std::abs(rhou[i]/rho[i]));
+			}else{
+				dummy = dx[i]/cs;
+			}
 			if(i==0){
 				dt = dummy;
 			}
