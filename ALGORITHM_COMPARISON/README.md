@@ -6,6 +6,6 @@ To combat numerical diffusion, different advection algorithms have been invented
 Additional Resources:
 http://www2.mpia-hd.mpg.de/~dullemon/lectures/fluiddynamics08/
 
-In the image, we evolve a step function through 300 timesteps of dt=0.1 on a grid of 100 cells using various slope limiters.
+In the image, we evolve a step function through 300 timesteps of dt=0.1 on a grid of 100 cells using various slope limiters. We see that without slope estimation (Donor-Cell) the step function suffers strong numerical diffusion, while downwind slope estimation (Lax-Wendroff) overshoots and becomes numerically unstable near steep gradients. Thus, we need a slope limiter (Superbee) to limit numerical diffusion while ensuring that we don't overshoot.
 
 ![alt text](https://github.com/jakehanson/Hydrodynamics/blob/master/ALGORITHM_COMPARISON/SLOPE_LIMITERS/sim.gif)
