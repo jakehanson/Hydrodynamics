@@ -1,1 +1,1 @@
-## See jupyter notebook (Riemann Problem.ipyn) for detailed Riemann problem and solution
+## See jupyter notebook (Riemann Problem.ipynb) for detailed Riemann problem and solution
