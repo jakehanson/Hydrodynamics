@@ -1,5 +1,5 @@
 #### Solution to Balloon Pop
-![alt text](https://github.com/jakehanson/Hydrodynamics/blob/master/RIEMANN/balloon_pop_Pressure.pdf)
+![Pressure](https://github.com/jakehanson/Hydrodynamics/blob/master/RIEMANN/balloon_pop_pressure.png)
 ![Velocity](https://github.com/jakehanson/Hydrodynamics/blob/master/RIEMANN/balloon_pop_Velocity.pdf)
 
 #### Analytic Solution to Riemann Problem
